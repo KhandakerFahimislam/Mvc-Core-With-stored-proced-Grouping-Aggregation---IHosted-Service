@@ -1,0 +1,79 @@
+﻿@model TeacherEditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Edit" asp-controller="Teachers" method="post" enctype="multipart/form-data">
+            <h3>Add new Teacher</h3>
+            <input type="hidden" asp-for="TeacherId" />
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2" asp-for="TeacherName"></label>
+                <div class="col-6">
+                    <input asp-for="TeacherName" class="form-control" />
+                    <span asp-validation-for="TeacherName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2" asp-for="ExpectSalary"></label>
+                <div class="col-6">
+                    <input type="text" asp-for="ExpectSalary" class="form-control" />
+                    <span asp-validation-for="ExpectSalary" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2" asp-for="Role"></label>
+                <div class="col-6">
+                    <select class="form-select" asp-for="Role" asp-items="@Html.GetEnumSelectList<Role>()">
+                        <option value="" selected>Select one</option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2" asp-for="Picture"></label>
+                <div class="col-6">
+                    <input type="file" asp-for="Picture" class="form-control" />
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-6 offset-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" asp-for="IsReadyToPrivateCoaching">
+                        <label class="form-check-label">
+                            IsReadyToPrivateCoaching ?
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-6 offset-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-6 offset-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section styles
+    {
+    <link href="~/libs/icons/font/bootstrap-icons.css" rel="stylesheet" />
+    }
+
+@section scripts
+    {
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.unobtrusive.js"></script>
+}
+

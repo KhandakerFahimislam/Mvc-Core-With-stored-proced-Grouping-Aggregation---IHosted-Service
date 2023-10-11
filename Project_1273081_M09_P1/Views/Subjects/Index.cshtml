@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Subject>
+@using X.PagedList
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Subjects</h3>
+        <div id="spinner" class="mb-2" style="display:none">
+            <div class="d-flex align-items-center">
+                <strong class="visually-hidden">Loading...</strong>
+                <div class="spinner-border text-success ms-auto" role="status" aria-hidden="true"></div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mb-1">
+            <a class="btn btn-primary btn-sm" asp-action="Create" asp-controller="Subjects"><i class="bi bi-plus"></i>Add New</a>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+
+                    <th>CourseDuration</th>
+                    <th>Teacher</th>
+                    <th>ExrtaClass</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+
+                        <td>@p.CourseDuration?.ToString("yyyy-MM-dd")</td>
+                        <td>@p.Teacher?.TeacherName</td>
+                        <td>@p.ExrtaClass</td>
+                        <td>
+                            <a class="btn btn-success btn-sm" asp-action="Edit" asp-controller="Subjects" asp-route-id="@p.SubjectId"><i class="bi bi-pencil"></i>Edit</a>
+                            <button data-pk="@p.SubjectId" type="button" class="btn btn-danger btn-sm del"><i class="bi bi-trash"></i>Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            @Html.PagedListPager((IPagedList)Model, pg => Url.Action("Index", new { pg}), new PagedListRenderOptions
+            {
+            UlElementClasses = new string[] {"pagination", "pagination-sm"},
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Always
+
+            })
+        </div>
+    </div>
+</div>
+@section styles
+    {
+    <link href="~/libs/icons/font/bootstrap-icons.css" rel="stylesheet" />
+    }
+@section scripts
+    {
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/ajax/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        $(document).ajaxStart(function () {
+            $('#spinner').show();
+        });
+        $(document).ajaxStop(function () {
+            $('#spinner').hide();
+        });
+        $(document).on("click", "button.del", function () {
+            let id = $(this).data("pk");
+            let btn = $(this);
+        $(".del").click(function () {
+            if (!confirm('Are you sure to delete?')) return;
+            var btn = $(this);
+            let id = $(this).data("pk");
+            $.ajax({
+                type: "post",
+                url: "/Subjects/Delete/" + id,
+                dataType: "json",
+                success: r => {
+                    if (r.success == true) {
+                        btn.closest("tr").remove();
+                    }
+                }
+            })
+        })
+    </script>
+}
+
+

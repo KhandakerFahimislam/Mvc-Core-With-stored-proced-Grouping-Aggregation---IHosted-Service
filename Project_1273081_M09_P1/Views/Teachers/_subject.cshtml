@@ -1,0 +1,14 @@
+﻿@model Subject
+<tr>
+    <td>
+        <input type="date" asp-for="CourseDuration" class="form-control form-control-sm" />
+        <span class="text-danger" asp-validation-for="CourseDuration"></span>
+    </td>
+    <td>
+        <input type="text" asp-for="ExrtaClass" class="form-control form-control-sm" />
+        <span class="text-danger" asp-validation-for="ExrtaClass"></span>
+    </td>
+    <td>
+        <button type="button" class="btn btn-danger btn-sm del">Remove</button>
+    </td>
+</tr>

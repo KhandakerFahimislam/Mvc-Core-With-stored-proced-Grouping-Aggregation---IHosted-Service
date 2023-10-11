@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Subject>
+@{
+    ViewData["Title"] = "Aggregates";
+}
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered">
+            <thead class="table-active">
+                <tr>
+                    <th>Function</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Count</td>
+                    <td>@Model.Count()</td>
+                </tr>
+                <tr>
+                    <td>Min (qty)</td>
+                    <td>@Model.Min(x=> x.ExrtaClass)</td>
+                </tr>
+                <tr>
+                    <td>Max (qty)</td>
+                    <td>@Model.Max(x=> x.ExrtaClass)</td>
+                </tr>
+                <tr>
+                    <td>Sum (qty, Salary)</td>
+                    <td>@Model.Sum(x=> x.ExrtaClass), Total Value: @Model.Sum(x=> x.ExrtaClass*x.Teacher?.ExpectSalary)</td>
+                </tr>
+                <tr>
+                    <td>Avg (qty, price)</td>
+                    <td>@Model.Average(x=> x.ExrtaClass), Total Value: @Model.Average(x=> x.Teacher?.ExpectSalary)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

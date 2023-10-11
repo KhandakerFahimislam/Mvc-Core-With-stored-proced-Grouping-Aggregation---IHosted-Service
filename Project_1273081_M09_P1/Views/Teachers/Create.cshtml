@@ -1,0 +1,165 @@
+﻿@model TeacherInputModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Add New Teacher</h3>
+        <form id="frm" method="post" asp-action="Create" asp-controller="Teachers">
+            <div class="form-group row mb-1">
+                <label asp-for="TeacherName" class="col-form-label col-2"></label>
+                <div class="col-6">
+                    <input asp-for="TeacherName" class="form-control" />
+                    <span asp-validation-for="TeacherName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="Role" class="col-form-label col-2"></label>
+                <div class="col-6">
+                    <select asp-for="Role" class="form-select" asp-items="@Html.GetEnumSelectList<Role>()">
+                        <option value="" selected>Select one</option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="ExpectSalary" class="col-form-label col-2"></label>
+                <div class="col-6">
+                    <input asp-for="ExpectSalary" class="form-control" />
+                    <span asp-validation-for="ExpectSalary" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="Picture" class="col-form-label col-2"></label>
+                <div class="col-6">
+                    <input type="file" asp-for="Picture" class="form-control" />
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-6 offset-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" asp-for="IsReadyToPrivateCoaching">
+                        <label class="form-check-label">
+                            IsReadyToPrivateCoaching ?
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-8">
+                    <h4>Subjects</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>CourseDuration</th>
+                                <th>ExtraClass</th>
+                                <th>
+                                    <button type="button" class="btn btn-outline-primary btn-sm" id="add"> <i class="bi bi-plus"></i>Add</button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-8 text-end">
+                    <button type="button" class="btn btn-primary" id="save" >Save</button>
+                    <button type='reset' class='btn btn-danger' onclick='window.location.go(-1);'><i class='fa fa-ban'></i> Cancel </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section styles
+    {
+    <link href="~/libs/icons/font/bootstrap-icons.css" rel="stylesheet" />
+    }
+@section scripts
+    {
+
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.unobtrusive.js"></script>
+    <script>
+        addSubjectForm();
+        $("#add").click(() => {
+            addSubjectForm();
+        });
+        $(document).on("click", "button.del", function () {
+            $(this).closest("tr").remove();
+        });
+        $("#save").click(() => {
+            if (!$("#frm").valid()) return;
+            var data = {
+                TeacherName: $("#TeacherName").val(),
+                ExpectSalary: $("#ExpectSalary").val(),
+                Role: $("#Role").val(),
+                IsReadyToPrivateCoaching: document.getElementById("IsReadyToPrivateCoaching").checked,
+                Picture: '',
+                Subjects: []
+            };
+            var dates = $("input[name=CourseDuration]");
+
+            var ExrtaClasses = $("input[name=ExrtaClass]");
+            for (var i = 0; i < dates.length; i++) {
+                data.Subjects.push({ CourseDuration: $(dates[i]).val(), ExrtaClass: $(ExrtaClasses[i]).val() });
+            }
+
+            if (document.getElementById("Picture").files.length > 0) {
+                var f = document.getElementById("Picture").files[0]
+                var formData = new FormData();
+                formData.append("file", f);
+                $.ajax({
+                    url: '/Teachers/Upload',
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: (r) => {
+
+                        data.Picture = r.name;
+                        saveData(data)
+                    }
+                });
+
+            }
+        })
+        function saveData(x) {
+            $.ajax({
+                type: "post",
+                url: "/Teachers/Create",
+                data: { model: x },
+                dataType: "json",
+                success: r => {
+                    console.log(r);
+                    if (r.success == true) {
+                        window.location.href = "/Teachers/Index";
+                    }
+                }
+            })
+        }
+        function addSubjectForm() {
+            $.ajax({
+                type: "get",
+                url: "/Teachers/GetSubjectForm",
+                success: r => {
+                    $("#tbody").append(r);
+                    $("#frm").removeData("validator").removeData("unobtrusiveValidation");
+                    $.validator.unobtrusive.parse($("#frm"));
+                }
+            });
+        }
+    </script>
+}
+
+

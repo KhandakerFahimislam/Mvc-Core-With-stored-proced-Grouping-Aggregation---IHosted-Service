@@ -1,0 +1,77 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Project_1273081_M09_P1
+build_property.RootNamespace = Project_1273081_M09_P1
+build_property.ProjectDir = C:\Users\Fahim\Downloads\m-09 Project\M-09 Final project for upload\Project_1273081_M09_P1\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Fahim\Downloads\m-09 Project\M-09 Final project for upload\Project_1273081_M09_P1
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Subjects/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViamVjdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Subjects/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViamVjdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Subjects/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViamVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Teachers/Aggregates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcQWdncmVnYXRlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Teachers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Teachers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Teachers/Grouping.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcR3JvdXBpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Teachers/GroupingResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcR3JvdXBpbmdSZXN1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Teachers/GroupingResultPrimitive.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcR3JvdXBpbmdSZXN1bHRQcmltaXRpdmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Teachers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/Teachers/_subject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlcnNcX3N1YmplY3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Fahim/Downloads/m-09 Project/M-09 Final project for upload/Project_1273081_M09_P1/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

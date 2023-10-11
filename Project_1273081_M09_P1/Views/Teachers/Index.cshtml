@@ -1,0 +1,162 @@
+﻿@model IEnumerable<Teacher>
+@using X.PagedList
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Teachers</h3>
+        <div id="spinner" class="mb-2" style="display:none">
+            <div class="d-flex align-items-center">
+                <strong class="visually-hidden">Loading...</strong>
+                <div class="spinner-border text-success ms-auto" role="status" aria-hidden="true"></div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mb-1">
+            <a class="btn btn-primary btn-sm" asp-action="Create" asp-controller="Teachers"><i class="bi bi-plus" ></i>Add New</a>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>TeacherName</th>
+                    <th>Salary</th>
+                    <th>Position</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td class="text-center" style="width:50px">
+                            <button type="button" class="btn btn-light btn-sm show-inventory"><i class="bi bi-chevron-right"></i></button>
+                            <button type="button" class="btn btn-light btn-sm hide-inventory" style="display:none"><i class="bi bi-chevron-down"></i></button>
+                        </td>
+                        <td><img src="~/Pictures/@p.Picture" class="rounded-circle" style="width:40px;" /></td>
+                        <td>@p.TeacherName</td>
+                        <td>@p.ExpectSalary</td>
+                        <td>@p.Role</td>
+                        <td>
+                            <a class="btn btn-success btn-sm" asp-action="Edit" asp-controller="Teachers" asp-route-id="@p.TeacherId"><i class="bi bi-pencil"></i>Edit</a>
+                            <button data-pk="@p.TeacherId" type="button" class="btn btn-danger btn-sm del"><i class="bi bi-trash"></i>Delete</button>
+                        </td>
+                    </tr>
+                    <tr style="display:none">
+                        <td class="border-end-0"></td>
+                        <td colspan="5">
+                            <h4>Sales</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>ExtraClass</th>
+                                        <th>
+                                            <a asp-action="Create" asp-controller="Subjects" asp-route-id="@p.TeacherId" class="btn btn-primary btn-sm"><i class="bi bi-plus"></i>Add</a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var s in p.Subjects)
+                                    {
+                                        <tr>
+                                            <td>@s.CourseDuration?.ToString("yyyy-MM-dd")</td>
+                                            <td>@s.ExrtaClass</td>
+                                            <th>
+                                                <a class="btn btn-success btn-sm" asp-action="Edit" asp-controller="Subjects" asp-route-id="@s.SubjectId"><i class="bi bi-pencil"></i>/Edit</a>
+                                                <button data-pk="@s.SubjectId" type="button" class="btn btn-danger btn-sm dels"><i class="bi bi-trash"></i>Delete</button>
+                                            </th>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            @Html.PagedListPager((IPagedList)Model, pg => Url.Action("Index", new { pg}), new PagedListRenderOptions
+            {
+            UlElementClasses = new string[] {"pagination", "pagination-sm"},
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Always
+
+            })
+        </div>
+    </div>
+</div>
+@section styles
+    {
+    <link href="~/libs/icons/font/bootstrap-icons.css" rel="stylesheet" />
+
+}
+@section scripts
+    {
+    <script src="~/libs/jquery/jquery.js"></script>
+
+    <script src="~/libs/ajax/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        $(".show-inventory").click(function () {
+            $(this).closest("tr").next().toggle();
+            $(this).toggle();
+            $(this).next().toggle();
+        });
+        $(".hide-inventory").click(function () {
+            $(this).closest("tr").next().toggle();
+            $(this).toggle();
+            $(this).prev().toggle();
+        });
+        $(document).ajaxStart(function () {
+            $('#spinner').show();
+        });
+        $(document).ajaxStop(function () {
+            $('#spinner').hide();
+        });
+        $(".del").click(function () {
+            if (!confirm('Are you sure to delete?')) return;
+            var btn = $(this);
+            let id = $(this).data("pk");
+            $.ajax({
+                type: "post",
+                url: "/Teachers/Delete/" + id,
+                dataType: "json",
+                success: r => {
+                    if (r.success == true) {
+                        var ptr = btn.closest("tr");
+                        var str = ptr.next();
+                        ptr.remove();
+                        str.remove();
+                    }
+                }
+            })
+        })
+        $(".dels").click(function () {
+            if (!confirm('Are you sure to delete?')) return;
+            var btn = $(this);
+            let id = $(this).data("pk");
+            $.ajax({
+                type: "post",
+                url: "/Subjects/Delete/" + id,
+                dataType: "json",
+                success: r => {
+                    if (r.success == true) {
+                        var ptr = btn.closest("tr");
+
+                        ptr.remove();
+
+                    }
+                }
+            })
+        });
+        
+    </script>
+}
+
+

@@ -1,0 +1,50 @@
+﻿@model Subject
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Create" asp-controller="Subjects" method="post">
+            <h3>Add new Subjects</h3>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2" asp-for="CourseDuration"></label>
+                <div class="col-6">
+                    <input type="date" asp-for="CourseDuration" class="form-control" />
+                    <span asp-validation-for="CourseDuration" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2" asp-for="Teacher"></label>
+                <div class="col-6">
+                    <select class="form-select" asp-for="TeacherId" asp-items="@(new SelectList(ViewBag.Teachers, "TeacherId", "TeacherName"))">
+                        <option value="" selected>--Select one--</option>
+
+                    </select>
+                    <span asp-validation-for="TeacherId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2" asp-for="ExrtaClass"></label>
+                <div class="col-6">
+                    <input asp-for="ExrtaClass" class="form-control" />
+                    <span asp-validation-for="ExrtaClass" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-6 offset-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type='reset' class='btn btn-danger' onclick='window.location.go(-1);'><i class='fa fa-ban'></i> Cancel </button>
+               
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts
+    {
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.unobtrusive.js"></script>
+}
